@@ -7,14 +7,16 @@ import (
 
 func TestAllowedLanguages_ReturnsSortedShippedCodes(t *testing.T) {
 	got := AllowedLanguages()
-	want := []string{"de", "en", "es"}
+	// leafwiki-zh: "zh" is shipped by this fork (upstream ships de/en/es only),
+	// so keep this list in sync with ui/leafwiki-ui/src/locales/.
+	want := []string{"de", "en", "es", "zh"}
 	if !reflect.DeepEqual(got, want) {
 		t.Fatalf("expected %v, got %v", want, got)
 	}
 }
 
 func TestIsAllowedLanguage_AcceptsShippedCodesAndRejectsUnknownOnes(t *testing.T) {
-	for _, lang := range []string{"en", "de", "es"} {
+	for _, lang := range []string{"en", "de", "es", "zh"} {
 		if !IsAllowedLanguage(lang) {
 			t.Errorf("expected %q to be allowed", lang)
 		}

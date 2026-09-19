@@ -6,7 +6,12 @@ package usersettings
 import "time"
 
 // DefaultLanguage is the language assigned to a user who has never set one.
-const DefaultLanguage = "en"
+//
+// NOTE (leafwiki-zh): upstream ships "en". This Simplified-Chinese build uses
+// "zh" so users without a saved preference really get the Chinese UI — the
+// frontend applies the per-user value on top of the site-wide
+// --default-language, so leaving this at "en" would override it.
+const DefaultLanguage = "zh"
 
 // DefaultDateFormat / DefaultTimeFormat mean "follow the active UI language"
 // — the value assigned to a user who has never picked an explicit format.
