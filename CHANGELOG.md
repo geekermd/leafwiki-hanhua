@@ -22,8 +22,8 @@
   `duplicate key "zh" in map literal`。改为显式保留 `"en"`。
 - **同步上游用例**：`internal/usersettings/language_test.go` 硬断言白名单只有
   `de/en/es`，加入 `zh` 后必须一并更新，否则 Go 测试失败。
-- **LICENSE 归属**：保留上游版权行 `Copyright (c) 2025 perber`，
-  追加 `Modifications Copyright (c) 2026 geekermd`（MIT 正文未改动）。
+- **版权声明**：`LICENSE` **原样保留上游 MIT 文本（未修改一字）**，这样 GitHub 也能正确识别为 MIT；
+  本衍生版自身的修改版权改在 `NOTICE` 的「版权声明」一节单独声明，二者不冲突。
 
 ### 仓库工程
 
@@ -37,7 +37,10 @@
   并遵守本仓库 `lint-actions.yml` 的 action-SHA 固定要求。
 - 移除上游与本衍生版无关、且会在推送 tag 时误触发上游发布流程的 workflow：
   `release.yml`、`e2e.yml`、`proxy-auth-e2e.yml`、`rebase-command.yml`。
-- 修正 README 中的死链与语言互链，补齐中文/英文双语说明。
+- 移除 `.github/dependabot.yml` 与 `lint-dependabot.yml`：本衍生版刻意与上游使用同一套依赖，
+  不做独立的依赖升级，避免与上游分叉、后续合并上游版本时产生冲突。
+- 修正 README 中的死链与语言互链，补齐中文/英文双语说明；
+  中文 README 顶部新增「30 秒上手」，并把差异表补全为 3 处代码 + 1 处用例。
 
 ### 变更
 

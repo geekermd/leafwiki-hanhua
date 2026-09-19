@@ -39,9 +39,12 @@ LeafWiki 简体中文衍生版 (leafwiki-zh)
   - 新增 packaging/（构建与 deb 打包）、validate_zh.py、TRANSLATION-SPEC.md、
     README.md（中文）、README.en.md、CHANGELOG.md、NOTICE、
     .github/workflows/zh-ci.yml
-  - LICENSE 保留上游版权行，并追加一行本衍生版的修改版权（MIT 原文未改）
+  - LICENSE **原样保留上游 MIT 文本，未修改一字**（这样 GitHub 也能正确识别为 MIT）；
+    本衍生版的修改版权在下文「版权声明」中单独声明
   - 移除上游与本衍生版无关、且会在推送 tag 时误触发上游发布流程的 workflow：
     release.yml、e2e.yml、proxy-auth-e2e.yml、rebase-command.yml
+  - 移除 .github/dependabot.yml 与 lint-dependabot.yml：本衍生版刻意与上游使用同一套依赖，
+    不做独立的依赖升级，以免与上游分叉、导致后续合并上游版本时产生冲突
   - .gitignore 追加 *.deb、/releases/、/packaging/out/
   - 上游的 README.md 原样另存为 README.upstream.md
 
@@ -63,13 +66,28 @@ LeafWiki 简体中文衍生版 (leafwiki-zh)
 许可证与义务
 ------------
   上游为 MIT 许可证。MIT 允许修改与再发布，条件是保留原始版权声明与
-  许可证文本（本仓库 LICENSE 已原样保留）。
+  许可证文本（本仓库 LICENSE **已原样保留，未作任何修改**）。
 
   本衍生版新增的翻译与脚本同样以 MIT 发布。
   若你再次分发本衍生版，请保留 LICENSE 与 NOTICE，并说明其非官方性质。
 
   上游的商标、项目名与品牌（LeafWiki 等）归上游作者所有；
   本衍生版的包名与二进制名使用 leafwiki-zh 以作区分。
+
+版权声明
+--------
+  上游 LeafWiki（含本仓库中全部上游代码与资源）：
+      Copyright (c) 2025 perber — https://github.com/perber/leafwiki
+      MIT 许可，原文见本仓库 LICENSE（未修改）
+
+  本衍生版的改动与新增文件（简体中文语言包 ui/leafwiki-ui/src/locales/zh/、
+  packaging/、validate_zh.py、TRANSLATION-SPEC.md、README、NOTICE、CHANGELOG
+  及两处后端改动）：
+      Copyright (c) 2026 geekermd
+      同样以 MIT 许可发布
+
+  说明：MIT 要求保留上游的原始版权与许可文本，因此 LICENSE 未作改动；
+  本衍生版自身的版权在此单独声明，二者并不冲突。
 
 上游资源
 --------
