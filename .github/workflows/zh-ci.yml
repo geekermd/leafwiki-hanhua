@@ -1,0 +1,105 @@
+name: zh-ci
+
+# 本衍生版（简体中文版）专用 CI。
+#
+#   1) 校验语言包：键与 en 逐条对齐、占位符一致、JSON 合法
+#   2) 校验后端口径：默认语言、语言白名单、用例是否同步（validate_zh.py --check-fork）
+#   3) 构建前端与后端，产出 deb 工件（amd64 / arm64）
+#
+# 上游自带的 backend.yml / frontend.yml / dependency-review.yml / lint-*.yml 保持不变；
+# 与本衍生版无关、且会在打 tag 时误触发上游发布流程的 release.yml，以及 e2e.yml /
+# proxy-auth-e2e.yml / rebase-command.yml 已移除，详见 NOTICE。
+#
+# 说明：本仓库的 lint-actions.yml 要求所有 action 固定到 40 位 commit SHA，此文件已遵守；
+# 校验步骤只用 Python 标准库，故直接使用 runner 自带的 python3，不引入 setup-python。
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+    paths:
+      - 'ui/leafwiki-ui/src/locales/**'
+      - 'internal/usersettings/**'
+      - 'packaging/**'
+      - 'validate_zh.py'
+      - 'TRANSLATION-SPEC.md'
+      - '.github/workflows/zh-ci.yml'
+  pull_request:
+    paths:
+      - 'ui/leafwiki-ui/src/locales/**'
+      - 'internal/usersettings/**'
+      - 'packaging/**'
+      - 'validate_zh.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: 校验语言包与后端口径
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+
+      - name: 校验语言包与衍生版口径
+        run: python3 validate_zh.py --all
+
+  build-deb:
+    name: 构建并打包 deb (${{ matrix.arch }})
+    needs: validate
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        arch: [amd64, arm64]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          fetch-depth: 0
+
+      - name: 解析版本号
+        id: version
+        env:
+          BASELINE: v0.13.0
+        run: |
+          set -euo pipefail
+          VERSION="$(git describe --tags --abbrev=0 2>/dev/null || echo "$BASELINE")"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "构建版本: $VERSION"
+
+      - name: Set up Go
+        uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version: '1.26.x'
+          cache: true
+
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: ui/leafwiki-ui/package-lock.json
+
+      - name: 构建并打包
+        env:
+          ARCHES: ${{ matrix.arch }}
+          APP_VERSION: ${{ steps.version.outputs.version }}
+        run: packaging/build-deb.sh "$GITHUB_WORKSPACE/releases"
+
+      - name: 显示产物
+        run: |
+          set -euo pipefail
+          ls -lh releases/
+          cat releases/*SHA256.txt
+
+      - name: Upload deb artifact
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: leafwiki-zh-${{ matrix.arch }}
+          path: |
+            releases/*.deb
+            releases/*SHA256.txt
+          if-no-files-found: error
