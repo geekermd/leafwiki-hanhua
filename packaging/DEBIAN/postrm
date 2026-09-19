@@ -1,0 +1,11 @@
+#!/bin/sh
+set -e
+if [ -d /run/systemd/system ]; then
+    systemctl daemon-reload >/dev/null 2>&1 || true
+fi
+if [ "$1" = purge ]; then
+    if getent passwd leafwiki >/dev/null; then deluser --system leafwiki >/dev/null 2>&1 || true; fi
+    if getent group leafwiki >/dev/null; then delgroup --system leafwiki >/dev/null 2>&1 || true; fi
+    echo "leafwiki-zh: 配置与数据已保留 —— 如需彻底删除：sudo rm -rf /etc/leafwiki /var/lib/leafwiki"
+fi
+exit 0

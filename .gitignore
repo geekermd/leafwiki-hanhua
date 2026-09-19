@@ -56,3 +56,8 @@ internal/http/dist/*
 /CLAUDE.md
 /AGENTS.md
 /.claude/
+
+# leafwiki-zh 衍生版：构建产物
+*.deb
+/packaging/out/
+/releases/

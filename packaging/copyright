@@ -1,0 +1,5 @@
+LeafWiki 上游项目：https://github.com/perber/leafwiki
+本包为其社区简体中文构建（leafwiki-zh），由本机打包，未修改上游许可证。
+
+上游以 MIT 许可证发布，详见上游仓库的 LICENSE 文件。
+本包新增的翻译文件（ui/leafwiki-ui/src/locales/zh/）随上游同许可证发布。

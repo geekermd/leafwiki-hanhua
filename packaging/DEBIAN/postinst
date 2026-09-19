@@ -1,0 +1,71 @@
+#!/bin/sh
+set -e
+
+log() { echo "leafwiki-zh: $*"; }
+
+# 1) 迁移手工安装遗留：位于 /etc/systemd/system 且不属于任何包的单元文件会遮蔽本包单元
+if [ -f /etc/systemd/system/leafwiki.service ] && ! dpkg -S /etc/systemd/system/leafwiki.service >/dev/null 2>&1; then
+    BAK="/etc/systemd/system/leafwiki.service.pre-deb.$(date +%Y%m%d%H%M%S)"
+    mv /etc/systemd/system/leafwiki.service "$BAK"
+    log "已备份手工安装的旧单元文件到 $BAK"
+fi
+# 2) 迁移手工安装遗留的二进制
+if [ -f /usr/local/bin/leafwiki ] && ! dpkg -S /usr/local/bin/leafwiki >/dev/null 2>&1; then
+    BAK="/usr/local/bin/leafwiki.pre-deb.$(date +%Y%m%d%H%M%S)"
+    mv /usr/local/bin/leafwiki "$BAK"
+    log "已备份手工安装的旧二进制到 $BAK"
+fi
+
+# 3) 系统用户与目录
+if ! getent group leafwiki >/dev/null; then
+    addgroup --system leafwiki >/dev/null
+fi
+if ! getent passwd leafwiki >/dev/null; then
+    adduser --system --home /var/lib/leafwiki --no-create-home \
+            --ingroup leafwiki --shell /usr/sbin/nologin \
+            --disabled-password --disabled-login leafwiki >/dev/null
+fi
+install -d -o leafwiki -g leafwiki -m 750 /var/lib/leafwiki
+install -d -o root -g leafwiki -m 750 /etc/leafwiki
+install -d -o root -g leafwiki -m 750 /etc/leafwiki/ssl
+
+# 4) 仅在缺失时生成配置与凭据 —— 已存在则绝不覆盖（升级安全）
+if [ ! -f /etc/leafwiki/leafwiki.env ]; then
+    JWT=$(head -c 32 /dev/urandom | base64 | tr -d '\n')
+    PW=$(head -c 32 /dev/urandom | base64 | tr -dc 'A-Za-z0-9' | head -c 24)
+    umask 077
+    cat > /etc/leafwiki/leafwiki.env <<ENVFILE
+LEAFWIKI_JWT_SECRET=$JWT
+LEAFWIKI_ADMIN_USERNAME=admin
+LEAFWIKI_ADMIN_PASSWORD=$PW
+LEAFWIKI_HOST=127.0.0.1
+LEAFWIKI_PORT=8080
+LEAFWIKI_DATA_DIR=/var/lib/leafwiki
+LEAFWIKI_LOG_LEVEL=info
+LEAFWIKI_TRUSTED_PROXY_IPS=127.0.0.1
+LEAFWIKI_SNAPSHOT=true
+LEAFWIKI_SNAPSHOT_INTERVAL=24h
+LEAFWIKI_DEFAULT_LANGUAGE=zh
+ENVFILE
+    chown root:root /etc/leafwiki/leafwiki.env
+    chmod 600 /etc/leafwiki/leafwiki.env
+    printf '%s\n' "$PW" > /etc/leafwiki/admin-password.txt
+    chown root:root /etc/leafwiki/admin-password.txt
+    chmod 600 /etc/leafwiki/admin-password.txt
+    log "=============================================="
+    log " 初始管理员账号： admin"
+    log " 初始管理员口令： $PW"
+    log " （同样保存在 /etc/leafwiki/admin-password.txt）"
+    log "=============================================="
+else
+    log "已存在 /etc/leafwiki/leafwiki.env，保留原有密钥与配置"
+fi
+
+# 5) 启用并启动服务
+if [ -d /run/systemd/system ]; then
+    systemctl daemon-reload >/dev/null 2>&1 || true
+    systemctl enable leafwiki.service >/dev/null 2>&1 || true
+    systemctl restart leafwiki.service >/dev/null 2>&1 || systemctl start leafwiki.service >/dev/null 2>&1 || true
+fi
+
+exit 0

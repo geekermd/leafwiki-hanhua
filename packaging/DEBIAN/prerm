@@ -1,0 +1,14 @@
+#!/bin/sh
+set -e
+if [ -d /run/systemd/system ]; then
+    case "$1" in
+        remove|deconfigure)
+            systemctl stop leafwiki.service >/dev/null 2>&1 || true
+            systemctl disable leafwiki.service >/dev/null 2>&1 || true
+            ;;
+        upgrade|failed-upgrade)
+            systemctl stop leafwiki.service >/dev/null 2>&1 || true
+            ;;
+    esac
+fi
+exit 0

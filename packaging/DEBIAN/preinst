@@ -1,0 +1,6 @@
+#!/bin/sh
+set -e
+if [ -d /run/systemd/system ] && [ -f /etc/systemd/system/leafwiki.service ]; then
+    systemctl stop leafwiki.service >/dev/null 2>&1 || true
+fi
+exit 0

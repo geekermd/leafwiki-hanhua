@@ -1,0 +1,16 @@
+Package: leafwiki-zh
+Version: @PKGVER@
+Architecture: @ARCH@
+Maintainer: md <md@debian-server>
+Installed-Size: @SIZE@
+Section: web
+Priority: optional
+Depends: ca-certificates, adduser
+Homepage: https://github.com/perber/leafwiki
+Description: LeafWiki - 轻量自托管维基（简体中文界面）
+ 单文件 Go 程序实现的自托管 wiki：页面以 Markdown 存盘，元数据用 SQLite，
+ 无需外部数据库。默认只监听 127.0.0.1，适合放在反向代理与
+ Cloudflare Tunnel 之后。
+ .
+ 本包为社区汉化构建：内置简体中文语言包（19 个命名空间、1212 条文案），
+ 语言切换器显示「简体中文」，默认语言为 zh；其余功能与上游 v@UPVER@ 一致。
