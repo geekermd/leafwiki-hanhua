@@ -1,0 +1,78 @@
+LeafWiki 简体中文衍生版 (leafwiki-zh)
+=====================================
+
+本仓库是 LeafWiki 的简体中文衍生版，不是上游的官方发布。
+
+上游项目
+--------
+  LeafWiki
+  https://github.com/perber/leafwiki
+  Copyright (c) 2025 perber
+  以 MIT 许可证发布（见本仓库 LICENSE，未作修改）
+
+本衍生版
+--------
+  基准版本 : v0.13.0
+  许可证   : MIT（与上游一致）
+  性质     : 非官方社区汉化，未获上游背书；上游不对此衍生版负责
+
+本衍生版相对上游的全部改动（3 处代码 + 1 处用例同步）
+----------------------------------------------------
+  1. 新增目录 ui/leafwiki-ui/src/locales/zh/
+     简体中文语言包，19 个命名空间文件、1212 条文案。
+     common.json 中 language.selfName = "简体中文"。
+
+  2. 修改 internal/usersettings/language.go
+     语言白名单允许 zh（经 DefaultLanguage 常量），并显式保留 en。
+     不改此处，界面上选择中文保存时会被后端拒绝。
+
+  3. 修改 internal/usersettings/models.go
+     常量 DefaultLanguage 由 "en" 改为 "zh"。
+     不改此处，未设置过偏好的用户会被前端用 en 覆盖站点默认语言，
+     表现为"登录页中文、登录后变回英文"。
+
+  4. 同步 internal/usersettings/language_test.go
+     上游用例硬断言白名单只有 de/en/es，加入 zh 后必须同步更新，
+     否则 Go 测试失败（这正是"改代码也要改用例"的典型情况）。
+
+另有以下与代码无关的仓库级调整（不影响程序行为）：
+  - 新增 packaging/（构建与 deb 打包）、validate_zh.py、TRANSLATION-SPEC.md、
+    README.md（中文）、README.en.md、CHANGELOG.md、NOTICE、
+    .github/workflows/zh-ci.yml
+  - LICENSE 保留上游版权行，并追加一行本衍生版的修改版权（MIT 原文未改）
+  - 移除上游与本衍生版无关、且会在推送 tag 时误触发上游发布流程的 workflow：
+    release.yml、e2e.yml、proxy-auth-e2e.yml、rebase-command.yml
+  - .gitignore 追加 *.deb、/releases/、/packaging/out/
+  - 上游的 README.md 原样另存为 README.upstream.md
+
+除上述文件外，其余代码与上游 v0.13.0 完全一致。
+
+本衍生版新增的文件（不属于上游）
+--------------------------------
+  ui/leafwiki-ui/src/locales/zh/**      中文语言包
+  packaging/**                          构建与 deb 打包脚本、systemd 单元
+  README.md                             中文主说明（本衍生版，已替换上游英文版位置）
+  README.en.md                          English readme（中文主说明的英文版）
+  README.upstream.md                    上游原始英文 README（原样保留）
+  CHANGELOG.md                          变更记录
+  NOTICE                                本文件
+  TRANSLATION-SPEC.md                   翻译术语表与规范
+  validate_zh.py                        语言包校验脚本
+  .github/workflows/zh-ci.yml           本衍生版的 CI
+
+许可证与义务
+------------
+  上游为 MIT 许可证。MIT 允许修改与再发布，条件是保留原始版权声明与
+  许可证文本（本仓库 LICENSE 已原样保留）。
+
+  本衍生版新增的翻译与脚本同样以 MIT 发布。
+  若你再次分发本衍生版，请保留 LICENSE 与 NOTICE，并说明其非官方性质。
+
+  上游的商标、项目名与品牌（LeafWiki 等）归上游作者所有；
+  本衍生版的包名与二进制名使用 leafwiki-zh 以作区分。
+
+上游资源
+--------
+  文档与安装说明：https://github.com/perber/leafwiki#readme
+  问题反馈（上游功能/缺陷）：https://github.com/perber/leafwiki/issues
+  本衍生版的翻译问题：请提交到本仓库
