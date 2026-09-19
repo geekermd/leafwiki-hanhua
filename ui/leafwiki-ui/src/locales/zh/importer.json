@@ -1,0 +1,171 @@
+{
+  "title": "导入",
+  "toast": {
+    "planCreatedSuccess": "导入计划创建成功",
+    "createPlanErrorFallback": "创建导入计划失败",
+    "loadPlanErrorFallback": "加载导入计划失败",
+    "noPlanToExecute": "没有可执行的导入计划",
+    "executeSuccess": "导入完成",
+    "canceledSuccess": "导入已取消",
+    "executionFailedFallback": "导入执行失败",
+    "executeErrorFallback": "执行导入计划失败",
+    "noPlanToClear": "没有可清除的导入计划",
+    "canceledBeforeCompletion": "取消完成前导入已结束",
+    "planClearedSuccess": "导入计划已清除",
+    "cancelOrClearErrorFallback": "取消或清除导入计划失败",
+    "unexpectedCancelResponse": "意外的导入取消响应"
+  },
+  "planActions": {
+    "create": "创建页面",
+    "update": "更新页面",
+    "skip": "跳过条目"
+  },
+  "resultActions": {
+    "needsAttention": "需要处理",
+    "created": "已创建",
+    "updated": "已更新",
+    "skipped": "已跳过",
+    "conflicted": "有冲突"
+  },
+  "steps": {
+    "selectZip": {
+      "title": "选择 Zip",
+      "description": "选择要导入的压缩包。"
+    },
+    "reviewPlan": {
+      "title": "检查计划",
+      "description": "检查生成的页面和路径。"
+    },
+    "runImport": {
+      "title": "运行导入",
+      "description": "在导入过程中查看进度。"
+    },
+    "reviewResult": {
+      "title": "查看结果",
+      "description": "查看已导入、已跳过或失败的条目。"
+    }
+  },
+  "nextAction": {
+    "chooseZip": "选择 zip 文件并创建导入计划。",
+    "reviewThenStart": "检查生成的条目，然后开始导入。",
+    "cancellationRequested": "已请求取消。当前条目完成后导入就会停止。",
+    "running": "导入正在进行中。你可以留在本页查看进度更新。",
+    "completed": "导入已成功完成。请查看下方结果，或使用另一个 zip 压缩包开始新的导入。",
+    "failed": "导入因错误而停止。请检查下方的消息和结果条目。",
+    "canceled": "导入已取消。已完成的工作已保留并显示在下方。",
+    "selectZipToBegin": "选择 zip 文件以开始。"
+  },
+  "beforeYouStart": {
+    "title": "开始之前",
+    "description": "导入包含 Markdown 文件的 zip 压缩包。LeafWiki 会先创建检查计划，只有在你明确执行导入步骤后才会导入页面。",
+    "whatHappensNext": "接下来会发生什么？",
+    "stepPrefix": "第 {{number}} 步",
+    "safeReviewTitle": "先安全检查",
+    "safeReviewText": "创建计划时还不会导入页面。",
+    "linksAssetsTitle": "链接和附件",
+    "linksAssetsText": "内部链接和嵌入的附件会在导入过程中被重写。",
+    "alphaTitle": "仍处于 alpha 阶段",
+    "alphaText": "某些 Markdown 变体可能仍需要事后手动清理。"
+  },
+  "flow": {
+    "title": "导入流程"
+  },
+  "package": {
+    "title": "选择导入包",
+    "description": "选择包含 Markdown 文件的 zip 压缩包。之后我们会生成预览计划，让你在导入前检查路径、操作和备注。",
+    "issueHint": "如果遇到问题、意外结果或不受支持的边缘情况，请在我们的 <link>GitHub 仓库</link> 提交 issue。",
+    "currentZip": "当前 Zip：",
+    "noZipSelected": "未选择 zip 文件",
+    "selectZipFile": "选择 Zip 文件",
+    "supportedInputHint": "支持的输入：单个 `.zip` 压缩包，其中包含你的 Markdown 知识库。",
+    "importFromZip": "从 Zip 导入",
+    "planOnlyHint": "这里只会创建检查计划。在你点击 `执行导入计划` 之前不会导入任何页面。"
+  },
+  "plan": {
+    "title": "导入计划",
+    "description": "在开始导入前，检查 LeafWiki 将要创建、更新或跳过的内容。",
+    "currentStatus": "当前状态",
+    "planId": "计划 ID：{{id}}",
+    "progress": "进度：{{progress}}",
+    "percentComplete": "已完成 {{percent}}%",
+    "willCreate": "将创建",
+    "willUpdate": "将更新",
+    "willSkip": "将跳过",
+    "runningCancelRequested": "已请求取消。当前条目完成后导入就会停止。",
+    "runningInBackground": "导入正在后台运行。你可以留在本页查看进度。",
+    "currentlyProcessing": " 正在处理 {{path}}。",
+    "canceledNotice": "导入已取消。已完成的条目已保留，部分结果显示在下方。",
+    "idLabel": "ID：",
+    "treeHashLabel": "树哈希：",
+    "progressLabel": "进度：",
+    "startedAtLabel": "开始时间：",
+    "finishedAtLabel": "结束时间：",
+    "startNewImport": "开始新的导入",
+    "closeAndClear": "关闭并清除"
+  },
+  "plannedItems": {
+    "title": "计划条目（{{count}}）",
+    "description": "这些是 LeafWiki 在压缩包中检测到的各个文件，以及它们映射到的目标页面。",
+    "importFile": "导入文件",
+    "targetPage": "目标页面",
+    "titleColumn": "标题",
+    "type": "类型",
+    "plannedAction": "计划操作",
+    "notesForReview": "检查备注",
+    "noSpecialNotes": "无特殊备注"
+  },
+  "run": {
+    "title": "运行导入",
+    "descriptionPlan": "计划无误后即可开始导入。你也可以清除当前计划，改用其他压缩包重新开始。",
+    "descriptionRunning": "导入正在按生成的计划执行。你可以留在本页监控进度或请求取消。",
+    "currentStatus": "当前状态",
+    "importRunning": "导入进行中",
+    "executeImportPlan": "执行导入计划",
+    "cancelRequested": "已请求取消",
+    "cancelImport": "取消导入",
+    "clearImportPlan": "清除导入计划"
+  },
+  "result": {
+    "title": "导入结果",
+    "description": "这是导入的最终结果。跳过的条目通常需要人工检查，失败的条目则需要在重试前处理。",
+    "wantAnotherTitle": "想导入另一个压缩包？",
+    "wantAnotherBody": "开始新的导入即可清除此结果，并选择其他 zip 文件。",
+    "created": "已创建",
+    "skipped": "已跳过",
+    "failed": "失败",
+    "treeUpdated": "树已更新",
+    "yes": "是",
+    "no": "否",
+    "importedCount": "导入数量：",
+    "updatedCount": "更新数量：",
+    "skippedCount": "跳过数量："
+  },
+  "resultItems": {
+    "title": "结果条目（{{filtered}}/{{total}}）",
+    "description": "使用筛选器查看成功导入、已跳过或失败的条目。",
+    "filterPlaceholder": "按路径、操作或错误筛选",
+    "importedFile": "导入的文件",
+    "resultingPage": "生成的页面",
+    "outcome": "结果",
+    "details": "详情",
+    "detailImported": "导入成功",
+    "detailUpdated": "已更新现有页面",
+    "detailSkipped": "已跳过，无错误",
+    "detailNone": "无额外详情",
+    "noItemsMatch": "没有符合当前筛选条件的条目。",
+    "filter": {
+      "all": "全部",
+      "created": "已创建",
+      "skipped": "已跳过",
+      "failed": "失败"
+    }
+  },
+  "status": {
+    "running": "运行中",
+    "completed": "已完成",
+    "canceled": "已取消",
+    "failed": "失败",
+    "planned": "已计划",
+    "idle": "空闲"
+  }
+}

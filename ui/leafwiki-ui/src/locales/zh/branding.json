@@ -1,0 +1,48 @@
+{
+  "pageTitle": "品牌设置",
+  "storeErrors": {
+    "loadFallback": "加载品牌设置失败",
+    "updateFallback": "更新品牌设置失败",
+    "uploadLogoFallback": "上传徽标失败",
+    "uploadFaviconFallback": "上传网站图标失败",
+    "deleteLogoFallback": "删除徽标失败",
+    "deleteFaviconFallback": "删除网站图标失败"
+  },
+  "siteName": {
+    "title": "站点名称",
+    "description": "显示在页眉、页面标题和登录界面中的名称。",
+    "label": "站点名称",
+    "placeholder": "LeafWiki"
+  },
+  "logo": {
+    "title": "徽标",
+    "description": "显示在页眉中站点名称旁边的徽标。",
+    "currentLabel": "当前徽标：",
+    "noLogo": "未上传徽标",
+    "uploadLabel": "上传徽标",
+    "uploadButton": "上传图片",
+    "hint": "支持 {{exts}}，最大 {{size}} MB"
+  },
+  "favicon": {
+    "title": "网站图标",
+    "description": "显示在浏览器标签页中的图标。",
+    "currentLabel": "当前网站图标：",
+    "noFavicon": "正在使用默认网站图标",
+    "uploadLabel": "上传网站图标",
+    "uploadButton": "上传网站图标",
+    "hint": "支持 {{exts}}，最大 {{size}} MB"
+  },
+  "save": "保存设置",
+  "toast": {
+    "logoDeleted": "徽标已删除",
+    "logoDeleteFailed": "删除徽标失败",
+    "faviconDeleted": "网站图标已删除",
+    "faviconDeleteFailed": "删除网站图标失败",
+    "brandingSaved": "品牌设置已保存",
+    "brandingSaveFailed": "保存品牌设置失败",
+    "logoUploaded": "徽标已上传",
+    "logoUploadFailed": "上传徽标失败",
+    "faviconUploaded": "网站图标已上传",
+    "faviconUploadFailed": "上传网站图标失败"
+  }
+}

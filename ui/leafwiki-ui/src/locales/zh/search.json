@@ -1,0 +1,32 @@
+{
+  "input": {
+    "placeholder": "搜索…",
+    "clearButton": "清除"
+  },
+  "tags": {
+    "accordionTitle": "全部标签",
+    "available_one": "有 {{count}} 个标签",
+    "available_other": "有 {{count}} 个标签",
+    "selected_one": "已选 {{count}} 个标签",
+    "selected_other": "已选 {{count}} 个标签",
+    "loading": "正在加载标签…",
+    "error": "无法加载标签。",
+    "clearFilter": "清除标签筛选"
+  },
+  "results": {
+    "loading": "正在加载结果…",
+    "noResults": "未找到结果。",
+    "resultSummary_one": "找到 <bold>{{count}}</bold> 条结果，匹配",
+    "resultSummary_other": "找到 <bold>{{count}}</bold> 条结果，匹配",
+    "filterQuery": "“{{query}}”",
+    "filterQueryWithTags_one": "“{{query}}”，含 {{count}} 个标签",
+    "filterQueryWithTags_other": "“{{query}}”，含 {{count}} 个标签",
+    "filterTagged": "标记为“{{tag}}”",
+    "filterTaggedWith_one": "含 {{count}} 个标签",
+    "filterTaggedWith_other": "含 {{count}} 个标签"
+  },
+  "resultCard": {
+    "kindPage": "页面",
+    "kindSection": "章节"
+  }
+}

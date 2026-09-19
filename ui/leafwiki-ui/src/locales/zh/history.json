@@ -1,0 +1,108 @@
+{
+  "common": {
+    "unknown": "未知",
+    "unknownTime": "未知时间"
+  },
+  "errors": {
+    "loadListFallback": "加载页面历史失败",
+    "loadPreviewFallback": "加载修订预览失败",
+    "compareFallback": "比较修订失败",
+    "loadMoreFallback": "加载更多修订失败"
+  },
+  "trigger": {
+    "contentUpdate": "内容更新后保存",
+    "assetUpdate": "附件更新后保存",
+    "structureUpdate": "结构更新后保存",
+    "restore": "恢复后保存",
+    "delete": "删除前保存",
+    "generic": "保存为 {{type}}"
+  },
+  "assetChange": {
+    "added": "已添加",
+    "removed": "已移除",
+    "replaced": "已替换"
+  },
+  "restoreDialog": {
+    "title": "恢复此修订？",
+    "description": "这将恢复该修订的内容、标题和附件。当前 slug 和位置保持不变。",
+    "cancel": "取消",
+    "confirm": "恢复修订",
+    "restoredTitleLabel": "恢复后的标题：",
+    "slugNote": "该修订使用的 slug 为 <mono>{{revisionSlug}}</mono>。当前 slug <mono>{{currentSlug}}</mono> 将保持不变。"
+  },
+  "diff": {
+    "noTextDifference": "此修订与当前版本之间没有文本差异。"
+  },
+  "changes": {
+    "summaryHeading": "变更摘要",
+    "linesAdded": "新增行数",
+    "linesRemoved": "删除行数",
+    "assetsChanged": "附件变更",
+    "diffHeading": "差异",
+    "diffNote": "与当前版本比较",
+    "assetsDetails": "附件（{{count}}）",
+    "assetAdded": "新增 {{count}} 个",
+    "assetReplaced": "替换 {{count}} 个",
+    "assetRemoved": "移除 {{count}} 个"
+  },
+  "rawText": {
+    "heading": "原始文本",
+    "empty": "（空）"
+  },
+  "assetsPanel": {
+    "heading": "附件",
+    "empty": "此修订没有存储任何附件。",
+    "octetStream": "application/octet-stream",
+    "openAsset": "打开附件",
+    "downloadAsset": "下载附件"
+  },
+  "tabs": {
+    "preview": "预览",
+    "changes": "变更",
+    "raw": "原始文本",
+    "assets": "附件",
+    "mobileRevisions": "修订",
+    "mobileDetails": "详情"
+  },
+  "detail": {
+    "loadingHistory": "正在加载历史...",
+    "noRevisionSelectedTitle": "未选择修订",
+    "noRevisionSelectedMessage": "请从列表中选择一个修订以查看详情。",
+    "loadingDiff": "正在加载差异...",
+    "loadingPreview": "正在加载预览...",
+    "noPreview": "没有可用的预览。",
+    "noChangesFromCurrent": "与当前版本没有差异。",
+    "noComparisonData": "没有可用的比较数据。",
+    "noRawText": "没有可用的原始文本。",
+    "noAssetData": "没有可用的附件数据。"
+  },
+  "list": {
+    "loading": "正在加载历史...",
+    "emptyWithLatest": "暂无更早的修订。有更多更改后，旧版本将显示在这里。",
+    "emptyNoLatest": "暂无修订。页面发生更改后将显示在这里。",
+    "activeVersionBadge": "当前版本",
+    "loadMoreLoading": "加载中...",
+    "loadMore": "加载更多",
+    "resizeAriaLabel": "调整修订列表大小",
+    "title": "修订历史"
+  },
+  "header": {
+    "revisionBy": "由 {{author}} 修订 · {{time}}",
+    "restoreLoading": "正在恢复...",
+    "currentVersion": "当前版本",
+    "restore": "恢复",
+    "titleLabel": "标题",
+    "slugLabel": "Slug",
+    "emptyValue": "（空）"
+  },
+  "chips": {
+    "revisionSlug": "修订 slug：{{slug}}",
+    "currentSlug": "当前 slug：{{slug}}",
+    "assetChangesCount": "{{count}} 项附件变更",
+    "assetsCount": "{{count}} 个附件"
+  },
+  "toasts": {
+    "restoreSuccess": "修订已恢复",
+    "restoreErrorFallback": "恢复修订失败"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "restoreButton": "恢复",
+  "restoreConfirmTitle": "恢复此备份？",
+  "restoreConfirmDescription": "这将用此备份中的内容覆盖所有当前内容、用户和设置，并立即强制所有人退出登录——包括您在内。所有人都需要重新登录。恢复运行期间将暂时禁止写入。此操作无法撤销。",
+  "restoreConfirmCancel": "取消",
+  "restoreConfirmAction": "恢复",
+  "restoring": "正在恢复…",
+  "uploadSectionTitle": "从上传的备份恢复",
+  "uploadSectionDescription": "从来自其他位置的备份 ZIP 恢复——例如之前下载的，或从其他实例复制的备份。",
+  "uploadSelectButton": "选择 ZIP 文件",
+  "currentFileLabel": "当前 ZIP：",
+  "noFileSelected": "未选择 ZIP 文件",
+  "uploadConfirmTitle": "恢复此上传的备份？",
+  "uploadConfirmDescription": "这将用上传的备份中的内容覆盖所有当前内容、用户和设置，并立即强制所有人退出登录——包括您在内。所有人都需要重新登录。恢复运行期间将暂时禁止写入。此操作无法撤销。",
+  "uploadConfirmCancel": "取消",
+  "uploadConfirmAction": "恢复",
+  "progressLabel": "当前阶段",
+  "resyncTailLabel": "恢复完成——正在重建搜索索引，随后将重新加载",
+  "progress": {
+    "validating": "正在校验备份",
+    "swapping": "正在替换文件",
+    "reopening_auth": "正在重新打开用户数据库",
+    "invalidating_sessions": "正在使会话失效",
+    "reloading_branding": "正在重新加载品牌设置",
+    "tree": "正在重建页面树",
+    "links": "正在索引链接",
+    "tags": "正在重建标签与属性",
+    "search": "正在索引搜索"
+  },
+  "versionWarningLabel": "版本不匹配",
+  "needsInterventionTitle": "恢复需要处理",
+  "needsInterventionDescription": "恢复未能正常完成，此实例可能处于部分恢复的状态。在问题解决之前，写入将保持禁用。现在重启服务器会重新加载磁盘上的实际内容，这是恢复到一致状态的支持方式。",
+  "selfRestartButton": "立即重启服务器",
+  "selfRestarting": "正在重启服务器…此页面将在几秒后自动重新加载。",
+  "toast": {
+    "restoreAlreadyRunning": "已有恢复任务正在进行",
+    "restoreFailed": "恢复失败",
+    "restoreSucceeded": "恢复完成。正在重新加载…",
+    "restoreSucceededResyncUnconfirmed": "恢复已完成，但无法确认搜索索引是否重建完成。正在重新加载——如果搜索结果看起来过时，请点击资源管理器中的刷新按钮。"
+  },
+  "errors": {
+    "jobLost": "恢复任务已丢失——服务器可能已重启"
+  }
+}

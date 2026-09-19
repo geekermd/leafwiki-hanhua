@@ -1,0 +1,33 @@
+{
+  "manager": {
+    "title": "附件",
+    "fileTooLarge": "文件过大。最大允许 {{maxSize}}。",
+    "uploadErrorFallback": "附件上传失败",
+    "dropzoneText": "将文件拖放到此处，或点击上传",
+    "maxFileSize": "最大文件大小：{{maxSize}}",
+    "uploading_one": "正在上传 {{count}} 个文件…",
+    "uploading_other": "正在上传 {{count}} 个文件…",
+    "loading": "正在加载附件…",
+    "empty": "暂无附件",
+    "tip": "提示：双击可插入默认标记。图片也可以链接形式插入，音频/视频则有播放器插入按钮。"
+  },
+  "item": {
+    "renameSuccess": "附件已重命名",
+    "renameErrorFallback": "重命名失败",
+    "deleteSuccess": "附件已删除",
+    "deleteErrorFallback": "删除失败",
+    "save": "保存",
+    "cancel": "取消",
+    "insertImageLink": "插入图片链接",
+    "insertAudioPlayer": "插入音频播放器",
+    "insertVideoPlayer": "插入视频播放器",
+    "insertImage": "插入图片",
+    "insertLink": "插入链接",
+    "rename": "重命名",
+    "delete": "删除"
+  },
+  "dialog": {
+    "title": "附件管理器",
+    "description": "上传或选择要插入页面的附件。"
+  }
+}

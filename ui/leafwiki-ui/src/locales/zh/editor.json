@@ -1,0 +1,131 @@
+{
+  "wikiLinkDisambiguation": {
+    "title": "找到多个页面",
+    "descriptionPrefix": "有多个页面匹配",
+    "descriptionSuffix": "。请选择你要指向的页面。"
+  },
+  "slugInput": {
+    "label": "Slug",
+    "placeholder": "页面 Slug",
+    "generateErrorFallback": "生成 Slug 时出错"
+  },
+  "addPageDialog": {
+    "dateTitleTooltip": "将标题设为今天的日期"
+  },
+  "editPageMetadataDialog": {
+    "dialogTitle": "编辑{{item}}元数据",
+    "dialogDescription": "更改{{item}}的元数据",
+    "titleLabel": "标题",
+    "titlePlaceholder": "{{item}}标题",
+    "pathPrefix": "路径：",
+    "cancelButton": "取消",
+    "saveButton": "更改",
+    "dateTitleTooltip": "将标题设为今天的日期"
+  },
+  "toolbar": {
+    "closeEditorButton": "关闭编辑器",
+    "savePageButton": "保存页面",
+    "boldTooltip": "加粗（Ctrl+B）",
+    "italicTooltip": "斜体（Ctrl+I）",
+    "strikethroughTooltip": "删除线",
+    "highlightTooltip": "高亮",
+    "linkTooltip": "链接（Ctrl+K）",
+    "heading1Tooltip": "一级标题（Ctrl+Alt+1）",
+    "heading2Tooltip": "二级标题（Ctrl+Alt+2）",
+    "heading3Tooltip": "三级标题（Ctrl+Alt+3）",
+    "tableTooltip": "表格",
+    "tableSizeSelect": "选择尺寸",
+    "tableSizeLabel": "{{col}} × {{row}}",
+    "tableInsertAriaLabel": "插入表格 {{col}} x {{row}}",
+    "codeBlockTooltip": "代码块",
+    "inlineCodeTooltip": "行内代码（Ctrl+`）",
+    "imageTooltip": "图片 / 文件",
+    "undoTooltip": "撤销",
+    "redoTooltip": "重做",
+    "lineWrapEnableTooltip": "启用自动换行",
+    "lineWrapDisableTooltip": "禁用自动换行",
+    "moreOptionsAriaLabel": "更多格式选项",
+    "previewSplitTooltip": "使用并排预览布局",
+    "previewStackedTooltip": "使用堆叠预览布局",
+    "showPreviewTooltip": "显示预览",
+    "hidePreviewTooltip": "隐藏预览",
+    "pasteRichTooltip": "带格式粘贴（Ctrl+Shift+V）",
+    "pastePlainTooltip": "无格式粘贴（Ctrl+V）",
+    "pasteRich": "带格式粘贴",
+    "pastePlain": "无格式粘贴",
+    "pasteClipboardError": "无法读取剪贴板内容",
+    "strikethrough": "删除线",
+    "highlight": "高亮",
+    "heading1": "一级标题",
+    "heading2": "二级标题",
+    "heading3": "三级标题",
+    "insertTable": "插入表格（3×3）",
+    "lineWrap": "自动换行",
+    "autoSave": "自动保存",
+    "autoSavePaused": "已暂停"
+  },
+  "pageEditor": {
+    "savedToast": "页面保存成功",
+    "saveErrorFallback": "保存页面时出错",
+    "saveAnyway": "仍然保存",
+    "conflictAgainMessage": "保存时页面再次被修改。请重新加载页面并重新应用你的更改。",
+    "errorPrefix": "错误：{{error}}",
+    "metadataErrorsBeforeSave": "请先修复元数据错误再保存。",
+    "contentNullFallback": "更新后的页面内容为 null 或 undefined",
+    "unknownErrorFallback": "发生了未知错误"
+  },
+  "linkInsertDialog": {
+    "dialogTitle": "插入链接",
+    "displayTextLabel": "显示文本",
+    "urlLabel": "URL",
+    "textPlaceholder": "链接文本",
+    "urlPlaceholder": "https:// 或搜索页面…",
+    "cancelButton": "取消",
+    "insertButton": "插入"
+  },
+  "frontmatterPanel": {
+    "metadataTitle": "元数据",
+    "tagsHeading": "标签",
+    "propertiesHeading": "属性",
+    "removeFieldAriaLabel": "移除 frontmatter 字段 {{field}}",
+    "addTagPlaceholder": "添加标签",
+    "keyPlaceholder": "键",
+    "valuePlaceholder": "值",
+    "internalFieldsToggle": "内部字段",
+    "addPropertyButton": "添加属性",
+    "flatHint": "目前请保持字段为扁平结构。如果以后需要嵌套元数据，请使用类似 <code>seo.title</code> 的点号键。",
+    "unsupportedNotice": "现有的高级 frontmatter 会在后台保留，但暂时无法在此精简视图中编辑。"
+  },
+  "tagInput": {
+    "loading": "加载中…",
+    "noMatchingTags": "未找到匹配的标签。",
+    "removeTagAriaLabel": "移除标签 {{tag}}"
+  },
+  "markdownEditor": {
+    "editorTab": "编辑器",
+    "previewTab": "预览",
+    "resizeAriaLabel": "调整编辑器和预览窗格大小",
+    "fileTooLarge": "文件过大。最大允许 {{maxSize}}。",
+    "uploadedToast": "已上传 {{filename}}",
+    "uploadErrorFallback": "上传 {{filename}} 失败"
+  },
+  "autoSave": {
+    "savedToast": "已保存",
+    "versionConflictToast": "自动保存已暂停，页面已被其他用户修改。请手动保存以继续。",
+    "errorFallback": "自动保存失败"
+  },
+  "frontmatterValidation": {
+    "tagsWhitespace": "标签不能包含首尾空白。",
+    "tagsEmpty": "标签不能为空。",
+    "tagsUnique": "标签必须唯一。",
+    "keyEmpty": "属性键不能为空。",
+    "keyWhitespace": "属性键不能包含首尾空白。",
+    "keyReservedPrefix": "属性键使用了保留前缀。",
+    "keyReserved": "属性键为保留字。",
+    "keyUnique": "属性键必须唯一。",
+    "valueType": "属性值必须是字符串、数字、布尔值或扁平列表。"
+  },
+  "titleBar": {
+    "dirtyIndicator": "（有更改）"
+  }
+}
