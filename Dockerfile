@@ -1,0 +1,41 @@
+# Step 1: Frontend
+FROM node:26-alpine@sha256:2d984a15c9b54fd0aeb608b8e0d0d83529eb34d2966db27a1fb4f1edc3d298a3 AS frontend-build
+WORKDIR /app
+ARG APP_VERSION
+COPY ./ui/leafwiki-ui/package*.json ./
+RUN npm ci --ignore-scripts
+COPY ./ui/leafwiki-ui/ ./
+RUN VITE_API_URL=/ APP_VERSION=${APP_VERSION} npm run build
+
+# Step 2: Backend + Build binary
+FROM golang:1.27-alpine@sha256:4c9fe60190a2a3350ddc51de80d0224b8a6698d12bdfc999fee45ea9d6c46dbc AS backend-build
+WORKDIR /app
+ARG APP_VERSION
+ARG DISABLE_REFRESH_TOKEN_RATE_LIMIT=false
+COPY go.mod go.sum ./
+RUN go mod download
+COPY . .
+COPY --from=frontend-build /app/dist ./internal/http/dist
+RUN CGO_ENABLED=0 go build \
+	-ldflags="-s -w -X github.com/perber/wiki/internal/http.EmbedFrontend=true -X github.com/perber/wiki/internal/http.Environment=production -X main.Version=${APP_VERSION} -X github.com/perber/wiki/internal/wiki/auth.DisableRefreshTokenRateLimit=${DISABLE_REFRESH_TOKEN_RATE_LIMIT}" \
+	-o /out/leafwiki ./cmd/leafwiki
+
+# Step 3: Final image (small)
+FROM alpine:3.24@sha256:28bd5fe8b56d1bd048e5babf5b10710ebe0bae67db86916198a6eec434943f8b AS final
+WORKDIR /app
+COPY --from=backend-build /out/leafwiki /app/leafwiki
+
+COPY ./docker-entrypoint.sh /docker-entrypoint.sh
+RUN chmod +x /docker-entrypoint.sh
+
+EXPOSE 8080
+
+RUN mkdir -p /app/data && chmod 777 /app/data
+
+LABEL org.opencontainers.image.title="LeafWiki" \
+      org.opencontainers.image.description="LeafWiki – A fast wiki for people who think in folders, not feeds" \
+      org.opencontainers.image.url="https://demo.leafwiki.com" \
+      org.opencontainers.image.source="https://github.com/perber/leafwiki" \
+      org.opencontainers.image.licenses="MIT"
+
+ENTRYPOINT ["/docker-entrypoint.sh"]

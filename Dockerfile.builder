@@ -1,0 +1,39 @@
+# Stage 1: Frontend build
+FROM node:26-alpine@sha256:2d984a15c9b54fd0aeb608b8e0d0d83529eb34d2966db27a1fb4f1edc3d298a3 AS frontend
+
+WORKDIR /ui
+ARG APP_VERSION
+
+COPY ./ui/leafwiki-ui/package.json ./package.json
+COPY ./ui/leafwiki-ui/package-lock.json ./package-lock.json
+RUN npm ci --ignore-scripts
+
+COPY ./ui/leafwiki-ui/ ./
+RUN VITE_API_URL=/ APP_VERSION=${APP_VERSION} npm run build
+
+# Stage 2: Go backend build
+FROM golang:1.27-alpine@sha256:4c9fe60190a2a3350ddc51de80d0224b8a6698d12bdfc999fee45ea9d6c46dbc AS builder
+
+ARG APP_VERSION
+ARG GOOS
+ARG GOARCH
+ARG CGO_ENABLED=0
+ARG OUTPUT=leafwiki
+
+ENV GOOS=${GOOS}
+ENV GOARCH=${GOARCH}
+ENV CGO_ENABLED=${CGO_ENABLED}
+
+WORKDIR /build
+
+COPY go.mod go.sum ./
+RUN go mod download
+
+COPY . .
+
+# Copy built frontend
+COPY --from=frontend /ui/dist ./internal/http/dist
+
+RUN go build \
+  -ldflags="-s -w -X github.com/perber/wiki/internal/http.EmbedFrontend=true -X github.com/perber/wiki/internal/http.Environment=production -X main.Version=${APP_VERSION}" \
+  -o /out/${OUTPUT} ./cmd/leafwiki

@@ -1,0 +1,343 @@
+import TreeView from '@/features/tree/TreeView'
+import i18next from '@/lib/i18n'
+import { DialogRegistry } from '@/lib/registries/dialogRegistry'
+import { PanelItemRegistry } from '@/lib/registries/panelItemRegistry'
+import { getShortcutDefinition } from '@/lib/shortcuts/shortcutCatalog'
+import { FolderTree, Search as SearchIcon } from 'lucide-react'
+import {
+  AddPageDialog,
+  ApiKeyFormDialog,
+  AssetManagerDialog,
+  ChangePasswordDialog,
+  CopyPageDialog,
+  CreatePageByPathDialog,
+  DeleteApiKeyDialog,
+  DeletePageDialog,
+  DeleteUserDialog,
+  EditPageMetadataDialog,
+  ImagePreviewDialog,
+  LinkInsertDialog,
+  MovePageDialog,
+  PageQuickSwitcherDialog,
+  PageRefactorDialog,
+  PermalinkDialog,
+  RestoreRevisionDialog,
+  Search,
+  ShortcutsDialog,
+  SortPagesDialog,
+  UnsavedChangesDialog,
+  UserFormDialog,
+  WikiLinkDisambiguationDialog,
+} from './lazy-dialogs'
+
+export const panelItemRegistry = new PanelItemRegistry()
+export const dialogRegistry = new DialogRegistry()
+
+// Register sidebar panel items here
+
+export const SIDEBAR_TREE_PANEL_ID = 'tree'
+export const SIDEBAR_SEARCH_PANEL_ID = 'search'
+
+panelItemRegistry.register({
+  id: SIDEBAR_TREE_PANEL_ID,
+  label: () => i18next.t('sidebar.explorerTab', { ns: 'common' }),
+  hotkey: getShortcutDefinition('sidebar.explorer.open').keyCombo,
+  modes: ['view', 'edit', 'history', 'settings'],
+  icon: () => <FolderTree size={16} />,
+  render: () => {
+    return <TreeView />
+  },
+})
+
+panelItemRegistry.register({
+  id: SIDEBAR_SEARCH_PANEL_ID,
+  label: () => i18next.t('sidebar.searchTab', { ns: 'common' }),
+  hotkey: getShortcutDefinition('sidebar.search.open').keyCombo,
+  modes: ['view', 'edit', 'history', 'settings'],
+  icon: () => <SearchIcon size={16} />,
+  render: (props: unknown) => {
+    const SearchProps = props as React.ComponentProps<typeof Search>
+    return <Search {...SearchProps} />
+  },
+})
+
+// Register application wide dialogs here using dialogRegistry.register(...)
+
+export const DIALOG_ADD_PAGE = 'add-page'
+export const DIALOG_SORT_PAGES = 'sort-pages'
+export const DIALOG_MOVE_PAGE = 'move-page'
+export const DIALOG_CREATE_PAGE_BY_PATH = 'create-page-by-path'
+export const DIALOG_COPY_PAGE = 'copy-page'
+export const DIALOG_EDIT_PAGE_METADATA = 'edit-page-metadata'
+export const DIALOG_ASSET_MANAGER = 'asset-manager'
+export const DIALOG_DELETE_PAGE_CONFIRMATION = 'delete-page-confirmation'
+export const DIALOG_USER_FORM = 'user-form'
+export const DIALOG_CHANGE_USER_PASSWORD = 'change-user-password'
+export const DIALOG_DELETE_USER_CONFIRMATION = 'delete-user-confirmation'
+export const DIALOG_API_KEY_FORM = 'api-key-form'
+export const DIALOG_DELETE_API_KEY_CONFIRMATION = 'delete-api-key-confirmation'
+export const DIALOG_UNSAVED_CHANGES = 'unsaved-changes'
+export const DIALOG_IMAGE_PREVIEW = 'image-preview'
+export const DIALOG_PAGE_QUICK_SWITCHER = 'page-quick-switcher'
+export const DIALOG_PAGE_REFACTOR_CONFIRMATION = 'page-refactor-confirmation'
+export const DIALOG_PAGE_PERMALINK = 'page-permalink'
+export const DIALOG_RESTORE_REVISION_CONFIRMATION =
+  'restore-revision-confirmation'
+export const DIALOG_LINK_INSERT = 'link-insert'
+export const DIALOG_WIKILINK_DISAMBIGUATION = 'wikilink-disambiguation'
+export const DIALOG_SHORTCUTS_HELP = 'shortcuts-help'
+
+dialogRegistry.register({
+  type: DIALOG_ADD_PAGE,
+  render: (props) => {
+    return (
+      <AddPageDialog
+        key={DIALOG_ADD_PAGE}
+        {...(props as React.ComponentProps<typeof AddPageDialog>)}
+      />
+    )
+  },
+})
+
+dialogRegistry.register({
+  type: DIALOG_SORT_PAGES,
+  render: (props) => {
+    return (
+      <SortPagesDialog
+        key={DIALOG_SORT_PAGES}
+        {...(props as React.ComponentProps<typeof SortPagesDialog>)}
+      />
+    )
+  },
+})
+
+dialogRegistry.register({
+  type: DIALOG_MOVE_PAGE,
+  render: (props) => {
+    return (
+      <MovePageDialog
+        key={DIALOG_MOVE_PAGE}
+        {...(props as React.ComponentProps<typeof MovePageDialog>)}
+      />
+    )
+  },
+})
+
+dialogRegistry.register({
+  type: DIALOG_CREATE_PAGE_BY_PATH,
+  render: (props) => {
+    return (
+      <CreatePageByPathDialog
+        key={DIALOG_CREATE_PAGE_BY_PATH}
+        {...(props as React.ComponentProps<typeof CreatePageByPathDialog>)}
+      />
+    )
+  },
+})
+
+dialogRegistry.register({
+  type: DIALOG_COPY_PAGE,
+  render: (props) => {
+    return (
+      <CopyPageDialog
+        key={DIALOG_COPY_PAGE}
+        {...(props as React.ComponentProps<typeof CopyPageDialog>)}
+      />
+    )
+  },
+})
+
+dialogRegistry.register({
+  type: DIALOG_EDIT_PAGE_METADATA,
+  render: (props) => {
+    return (
+      <EditPageMetadataDialog
+        key={DIALOG_EDIT_PAGE_METADATA}
+        {...(props as React.ComponentProps<typeof EditPageMetadataDialog>)}
+      />
+    )
+  },
+})
+
+dialogRegistry.register({
+  type: DIALOG_ASSET_MANAGER,
+  render: (props) => {
+    return (
+      <AssetManagerDialog
+        key={DIALOG_ASSET_MANAGER}
+        {...(props as React.ComponentProps<typeof AssetManagerDialog>)}
+      />
+    )
+  },
+})
+
+dialogRegistry.register({
+  type: DIALOG_DELETE_PAGE_CONFIRMATION,
+  render: (props) => {
+    return (
+      <DeletePageDialog
+        key={DIALOG_DELETE_PAGE_CONFIRMATION}
+        {...(props as React.ComponentProps<typeof DeletePageDialog>)}
+      />
+    )
+  },
+})
+
+dialogRegistry.register({
+  type: DIALOG_USER_FORM,
+  render: (props) => {
+    return (
+      <UserFormDialog
+        key={DIALOG_USER_FORM}
+        {...(props as React.ComponentProps<typeof UserFormDialog>)}
+      />
+    )
+  },
+})
+
+dialogRegistry.register({
+  type: DIALOG_CHANGE_USER_PASSWORD,
+  render: (props) => {
+    return (
+      <ChangePasswordDialog
+        key={DIALOG_CHANGE_USER_PASSWORD}
+        {...(props as React.ComponentProps<typeof ChangePasswordDialog>)}
+      />
+    )
+  },
+})
+
+dialogRegistry.register({
+  type: DIALOG_DELETE_USER_CONFIRMATION,
+  render: (props) => {
+    return (
+      <DeleteUserDialog
+        key={DIALOG_DELETE_USER_CONFIRMATION}
+        {...(props as React.ComponentProps<typeof DeleteUserDialog>)}
+      />
+    )
+  },
+})
+
+dialogRegistry.register({
+  type: DIALOG_API_KEY_FORM,
+  render: () => {
+    return <ApiKeyFormDialog key={DIALOG_API_KEY_FORM} />
+  },
+})
+
+dialogRegistry.register({
+  type: DIALOG_DELETE_API_KEY_CONFIRMATION,
+  render: (props) => {
+    return (
+      <DeleteApiKeyDialog
+        key={DIALOG_DELETE_API_KEY_CONFIRMATION}
+        {...(props as React.ComponentProps<typeof DeleteApiKeyDialog>)}
+      />
+    )
+  },
+})
+
+dialogRegistry.register({
+  type: DIALOG_UNSAVED_CHANGES,
+  render: (props) => {
+    return (
+      <UnsavedChangesDialog
+        key={DIALOG_UNSAVED_CHANGES}
+        {...(props as React.ComponentProps<typeof UnsavedChangesDialog>)}
+      />
+    )
+  },
+})
+
+dialogRegistry.register({
+  type: DIALOG_IMAGE_PREVIEW,
+  render: (props) => {
+    return (
+      <ImagePreviewDialog
+        key={DIALOG_IMAGE_PREVIEW}
+        {...(props as React.ComponentProps<typeof ImagePreviewDialog>)}
+      />
+    )
+  },
+})
+
+dialogRegistry.register({
+  type: DIALOG_PAGE_QUICK_SWITCHER,
+  render: () => {
+    return <PageQuickSwitcherDialog key={DIALOG_PAGE_QUICK_SWITCHER} />
+  },
+})
+
+dialogRegistry.register({
+  type: DIALOG_SHORTCUTS_HELP,
+  render: () => {
+    return <ShortcutsDialog key={DIALOG_SHORTCUTS_HELP} />
+  },
+})
+
+dialogRegistry.register({
+  type: DIALOG_PAGE_REFACTOR_CONFIRMATION,
+  render: (props) => {
+    const typedProps = props as React.ComponentProps<typeof PageRefactorDialog>
+    return (
+      <PageRefactorDialog
+        key={`${DIALOG_PAGE_REFACTOR_CONFIRMATION}-${typedProps.preview.pageId}-${typedProps.preview.newPath}`}
+        {...typedProps}
+      />
+    )
+  },
+})
+
+dialogRegistry.register({
+  type: DIALOG_PAGE_PERMALINK,
+  render: (props) => {
+    return (
+      <PermalinkDialog
+        key={DIALOG_PAGE_PERMALINK}
+        {...(props as React.ComponentProps<typeof PermalinkDialog>)}
+      />
+    )
+  },
+})
+
+dialogRegistry.register({
+  type: DIALOG_LINK_INSERT,
+  render: (props) => {
+    return (
+      <LinkInsertDialog
+        key={DIALOG_LINK_INSERT}
+        {...(props as React.ComponentProps<typeof LinkInsertDialog>)}
+      />
+    )
+  },
+})
+
+dialogRegistry.register({
+  type: DIALOG_RESTORE_REVISION_CONFIRMATION,
+  render: (props) => {
+    const typedProps = props as React.ComponentProps<
+      typeof RestoreRevisionDialog
+    >
+    return (
+      <RestoreRevisionDialog
+        key={`${DIALOG_RESTORE_REVISION_CONFIRMATION}-${typedProps.revision.id}`}
+        {...typedProps}
+      />
+    )
+  },
+})
+
+dialogRegistry.register({
+  type: DIALOG_WIKILINK_DISAMBIGUATION,
+  render: (props) => {
+    return (
+      <WikiLinkDisambiguationDialog
+        key={DIALOG_WIKILINK_DISAMBIGUATION}
+        {...(props as React.ComponentProps<
+          typeof WikiLinkDisambiguationDialog
+        >)}
+      />
+    )
+  },
+})
